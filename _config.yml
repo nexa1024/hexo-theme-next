@@ -913,3 +913,18 @@ vendors:
 css: css
 js: js
 images: images
+
+giscus:
+  enable: true
+  repo: nexa1024/nexa1024.github.io
+  repo_id: R_kgDOQoD_Fw
+  category: Announcements
+  category_id: DIC_kwDOQoD_F84C0Abu ID
+  mapping: url
+  reactions_enabled: 1
+  emit_metadata: 0
+  input_position: bottom
+  data-theme: dark_high_contrast
+  lang: zh-CN
+  loading: lazy
+  crossorigin: anonymous
