@@ -133,14 +133,14 @@
           {%- set next = post.next if theme.post_navigation === 'right' else post.prev %}
           <div class="post-nav">
             <div class="post-nav-item">
-              {%- if prev %}
+              {%- if prev and not prev.hide %}
                 <a href="{{ url_for(prev.path) }}" rel="prev" title="{{ escape_html(prev.title or '') }}">
                   <i class="fa fa-angle-left"></i> {{ prev.title }}
                 </a>
               {%- endif %}
             </div>
             <div class="post-nav-item">
-              {%- if next %}
+              {%- if next and not next.hide %}
                 <a href="{{ url_for(next.path) }}" rel="next" title="{{ escape_html(next.title or '') }}">
                   {{ next.title }} <i class="fa fa-angle-right"></i>
                 </a>
