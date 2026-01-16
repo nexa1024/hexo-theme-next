@@ -11,6 +11,7 @@
     </div>
   {%- endif %}
 
+  {%- if post.hide !== true %}
   <article itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
       <div class="post-meta-container">
@@ -36,6 +37,6 @@
       {{ post_gallery(post.photos) }}
     </header>
   </article>
-
+  {%- endif %}
 {%- endfor %}
 {% endmacro %}
