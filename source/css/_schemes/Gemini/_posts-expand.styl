@@ -1,0 +1,137 @@
+// Gemini scheme - 首页文章列表一行式布局
+// 只在首页应用，不影响分类页面（categories, tags等）
+
+// 首页特有的选择器：.main-inner 同时拥有 index class
+.main-inner.index {
+  // 添加 "Home" 标题
+  &::before {
+    content: 'Home';
+    display: block;
+    font-size: 2em;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--theme-color);
+  }
+
+  // 文章块样式
+  .post-block {
+    margin-bottom: 0 !important;
+    padding: 12px $content-desktop-padding !important;
+    border-bottom: 1px solid var(--table-border-color) !important;
+
+    &:not(:first-child) {
+      margin-top: 0 !important;
+    }
+  }
+
+  // 文章内容容器 - 使用 flexbox 实现一行布局
+  .post-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 20px;
+  }
+
+  // 文章头部（包含标题和元信息）
+  .post-header {
+    flex: 1;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+
+    // 标题样式调整
+    .post-title {
+      font-size: $font-size-large !important;
+      margin: 0 !important;
+      font-weight: 500 !important;
+
+      .post-title-link {
+        display: inline !important;
+        border-bottom: none !important;
+
+        &::before {
+          display: none !important; // 移除下划线动画
+        }
+
+        &:hover {
+          color: var(--link-hover-color);
+          background: var(--menu-item-active-bg, rgba(0, 0, 0, 0.05));
+        }
+      }
+    }
+
+    // 隐藏元信息（日期、分类等）
+    .post-meta-container {
+      display: none !important;
+    }
+  }
+
+  // 隐藏摘要内容（more 标签前的内容）
+  .post-body {
+    display: none !important;
+  }
+
+  // 阅读全文按钮样式
+  .post-button {
+    margin: 0 !important;
+    flex-shrink: 0;
+
+    .btn {
+      display: inline-block;
+      padding: 8px 20px;
+      background: var(--btn-bg, var(--theme-color));
+      color: var(--btn-color, #fff);
+      border: 1px solid var(--btn-border-color, var(--theme-color));
+      border-radius: 4px;
+      font-size: $font-size-small;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: var(--btn-hover-bg);
+        border-color: var(--btn-hover-color);
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  // 隐藏文章底部的分隔线
+  .post-footer {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    .post-eof {
+      display: none !important;
+    }
+  }
+}
+
+// 移动端适配
++tablet-mobile() {
+  .main-inner.index {
+    .post-content {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 12px;
+    }
+
+    .post-button {
+      width: 100%;
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .post-header {
+      .post-title {
+        font-size: $font-size-medium !important;
+      }
+    }
+  }
+}
